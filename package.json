@@ -5,11 +5,17 @@
     "start": "next start",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "ts:check": "tsc --noEmit"
+    "ts:check": "tsc --noEmit",
+    "db:push": "npx drizzle-kit push",
+    "db:migration:generate": "npx drizzle-kit generate",
+    "db:migration:apply": "npx drizzle-kit migrate"
   },
   "dependencies": {
     "clsx": "^2.1.1",
+    "dotenv": "^16.5.0",
+    "drizzle-orm": "^0.42.0",
     "next": "^15.3.1",
+    "pg": "^8.15.5",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "tailwind-merge": "^3.2.0"
@@ -18,13 +24,19 @@
     "@bluzzi/eslint-config": "^2.1.1",
     "@tailwindcss/postcss": "^4.1.4",
     "@types/node": "^22.14.1",
+    "@types/pg": "^8.11.14",
     "@types/react": "^19.1.2",
     "@types/react-dom": "^19.1.2",
+    "drizzle-kit": "^0.31.0",
     "eslint": "^9.25.1",
     "tailwindcss": "^4.1.4",
+    "tsx": "^4.19.3",
     "typescript": "^5.8.3"
   },
   "pnpm": {
-    "onlyBuiltDependencies": ["sharp"]
+    "onlyBuiltDependencies": [
+      "esbuild",
+      "sharp"
+    ]
   }
 }
