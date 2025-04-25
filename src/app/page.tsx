@@ -1,7 +1,18 @@
-const Page = () => {
+import type { ComponentAsync } from "#/utils/react";
+import { getDiscordOAuthURL } from "#/actions/discord";
+import { Button } from "#/ui/button";
+import Link from "next/link";
+
+const Page: ComponentAsync = async () => {
+  const authURL = await getDiscordOAuthURL();
+
   return (
     <div>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit nemo amet maiores dignissimos sunt, ad vero asperiores. Aliquid saepe omnis mollitia porro quos fuga veniam odit. Perspiciatis nobis quaerat dolorum!</p>
+      <Button asChild>
+        <Link href={authURL}>
+          Login with Discord
+        </Link>
+      </Button>
     </div>
   );
 };
