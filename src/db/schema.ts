@@ -1,5 +1,4 @@
-import { timestamp } from "drizzle-orm/mysql-core";
-import { pgTable, varchar, integer, pgEnum, uuid, text, unique } from "drizzle-orm/pg-core";
+import { pgTable, varchar, integer, pgEnum, uuid, text, unique, timestamp } from "drizzle-orm/pg-core";
 
 export const tableUser = pgTable("user", {
   id: varchar("id", { length: 50 }).primaryKey(), // Discord ID need to be used for coherent updates
