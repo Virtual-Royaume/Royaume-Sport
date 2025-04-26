@@ -1,14 +1,15 @@
 "use server";
 
+import { envServer } from "#/env/server";
 import { fetchJSON } from "#/utils/request";
 import { z } from "zod";
 
 export const getDiscordOAuthURL = async () => {
   const url = new URL("https://discord.com/oauth2/authorize");
   url.search = new URLSearchParams({
-    client_id: process.env.DISCORD_CLIENT_ID!,
+    client_id: envServer.DISCORD_CLIENT_ID,
     response_type: "code",
-    redirect_uri: process.env.WEBSITE_URL!,
+    redirect_uri: envServer.NEXT_PUBLIC_WEBSITE_URL,
     scope: ["identify", "email"].join(" "),
   }).toString();
 
@@ -25,11 +26,11 @@ export const getDiscordUserInfoFromOAuthCode = async (code: string) => {
         "Content-Type": "application/x-www-form-urlencoded",
       },
       body: new URLSearchParams({
-        client_id: process.env.DISCORD_CLIENT_ID!,
-        client_secret: process.env.DISCORD_CLIENT_SECRET!,
+        client_id: envServer.DISCORD_CLIENT_ID,
+        client_secret: envServer.DISCORD_CLIENT_SECRET,
+        redirect_uri: envServer.NEXT_PUBLIC_WEBSITE_URL,
         grant_type: "authorization_code",
-        code,
-        redirect_uri: process.env.WEBSITE_URL!,
+        code: code,
       }),
     },
     schema: z.object({

@@ -1,7 +1,8 @@
 import type { NextRequest } from "next/server";
-import type { NextResponse } from "next/server";
+import { COOKIES_KEYS } from "./utils/cookie";
 import { getDiscordUserInfoFromOAuthCode } from "#/actions/discord";
 import { postgres, tableUser } from "#/db";
+import { NextResponse } from "next/server";
 
 export const middleware = async (request: NextRequest): Promise<NextResponse | void> => {
   // Finalize OAuth2 authentication process:
@@ -26,6 +27,14 @@ export const middleware = async (request: NextRequest): Promise<NextResponse | v
       .insert(tableUser)
       .values(userInsert)
       .onConflictDoUpdate({ target: tableUser.id, set: userInsert });
+
+    const response = NextResponse.redirect(new URL("/", request.url));
+    response.cookies.set({
+      name: COOKIES_KEYS.JWT_AUTH_TOKEN,
+      value: "bar",
+      path: "/",
+    });
+    return response;
   }
 };
 
