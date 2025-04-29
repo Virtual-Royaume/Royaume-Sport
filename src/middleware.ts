@@ -1,5 +1,6 @@
 import type { NextRequest } from "next/server";
 import { COOKIES_KEYS } from "./utils/cookie";
+import { jwtAccount } from "./utils/jwt";
 import { getDiscordUserInfoFromOAuthCode } from "#/actions/discord";
 import { postgres, tableUser } from "#/db";
 import { NextResponse } from "next/server";
@@ -31,7 +32,7 @@ export const middleware = async (request: NextRequest): Promise<NextResponse | v
     const response = NextResponse.redirect(new URL("/", request.url));
     response.cookies.set({
       name: COOKIES_KEYS.JWT_AUTH_TOKEN,
-      value: "bar",
+      value: jwtAccount.generate({ accountID: userInfo.id }),
       path: "/",
     });
     return response;
