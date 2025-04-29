@@ -5,6 +5,9 @@ import "#/styles/tailwind.css";
 export const metadata: Metadata = {
   title: "Royaume Sport",
   description: "Statistiques sportives des membres de la communauté du Royaume.",
+  icons: {
+    icon: "/logo.png",
+  },
 };
 
 const Layout: Component<PropsWithChildren> = ({ children }) => {
