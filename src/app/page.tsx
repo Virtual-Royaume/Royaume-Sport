@@ -1,18 +1,19 @@
 import type { ComponentAsync } from "#/utils/react";
+import { SectionHeader } from "./header.section";
+import { SectionTable } from "./table.section";
 import { getDiscordOAuthURL } from "#/actions/discord";
-import { Button } from "#/ui/button";
-import Link from "next/link";
+import { getMetrics } from "#/actions/metric";
+import { Separator } from "#/ui/separator";
 
 const Page: ComponentAsync = async () => {
-  const authURL = await getDiscordOAuthURL();
+  const discordOAuthURL = await getDiscordOAuthURL();
+  const metrics = await getMetrics();
 
   return (
     <div>
-      <Button asChild>
-        <Link href={authURL}>
-          Login with Discord
-        </Link>
-      </Button>
+      <SectionHeader discordOAuthURL={discordOAuthURL} />
+      <Separator />
+      <SectionTable metrics={metrics} />
     </div>
   );
 };

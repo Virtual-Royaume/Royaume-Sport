@@ -6,6 +6,6 @@ export const envSchema = z.object({
 });
 
 export const envClient = envSchema.parse({
-  NEXT_PUBLIC_WEBSITE_URL: process.env.NEXT_PUBLIC_FRONTEND_URL,
-  NEXT_PUBLIC_COOKIE_PREFIX: process.env.NEXT_PUBLIC_BACKEND_URL,
+  NEXT_PUBLIC_WEBSITE_URL: process.env.NEXT_PUBLIC_WEBSITE_URL,
+  NEXT_PUBLIC_COOKIE_PREFIX: process.env.NEXT_PUBLIC_COOKIE_PREFIX,
 });
