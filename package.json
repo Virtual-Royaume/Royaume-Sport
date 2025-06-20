@@ -54,8 +54,8 @@
   },
   "devDependencies": {
     "@bluzzi/eslint-config": "^2.1.1",
-    "@tailwindcss/postcss": "^4.1.5",
-    "@types/jsonwebtoken": "^9.0.9",
+    "@tailwindcss/postcss": "^4.1.10",
+    "@types/jsonwebtoken": "^9.0.10",
     "@types/node": "^22.15.3",
     "@types/pg": "^8.11.14",
     "@types/react": "^19.1.2",
